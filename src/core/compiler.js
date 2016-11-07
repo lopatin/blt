@@ -71,8 +71,6 @@ export default compose(
       return exp;
     })`;
 
-    // console.log(finalCode);
-
     let evalResult = eval(finalCode)(React, ReactDOM, Recompose, Frame);
     // console.log(evalResult);
     return {

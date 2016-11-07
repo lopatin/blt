@@ -53,24 +53,25 @@ export default compose(
       `properties_bar_width = 200`,
       `properties_bar_height = ${measures.height}`,
     ])),
-  withState('componentPath', 'setComponentPath', 'standard.TreeView')
+  withState('componentPath', 'setComponentPath', 'standard.TreeView'),
+  loadStyle('standard.BLTStyle')
 )(({
     componentPath, setComponentPath, compiled, ProjectBar, PropertiesBar, refFn,
     newProjectBarMeasures, newPropertiesBarMeasures, newSandboxMeasures, onMeasure,
     project_bar_x, project_bar_y, project_bar_width, project_bar_height,
     properties_bar_x, properties_bar_y, properties_bar_width, properties_bar_height,
     sandbox_x, sandbox_y, sandbox_width, sandbox_height,
-    projectBarNode, propertiesBarNode, projectBarRefFn, propertiesBarRefFn
+    projectBarNode, propertiesBarNode, projectBarRefFn, propertiesBarRefFn,
+    setAdditionalWidth, additionalWidth, style
   }) => {
   return (
-    <div ref={refFn} className='BLT' style={{minHeight: 800, position: 'relative'}}>
+    <Block ref={refFn} style={style || {}}>
       <Toolbar
         component={ProjectBar}
         node={projectBarNode}
         onMeasure={newProjectBarMeasures}
         ref={projectBarRefFn}
         style={{
-          background: '#eeeeee',
           position: 'absolute',
           top: project_bar_y,
           left: project_bar_x,
@@ -84,7 +85,6 @@ export default compose(
         ref={propertiesBarRefFn}
         onMeasure={newPropertiesBarMeasures}
         style={{
-          background: '#eeeeee',
           position: 'absolute',
           top: properties_bar_y,
           left: properties_bar_x,
