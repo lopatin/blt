@@ -21,8 +21,10 @@ export default compose(
     ProjectBar: createEagerFactory(Block),
     PropertiesBar: createEagerFactory(Block)
   })),
-  withReducer('projectBarNode', 'projectBarRefFn', (state, ref) => ref ? ReactDOM.findDOMNode(ref) : null),
-  withReducer('propertiesBarNode', 'propertiesBarRefFn', (state, ref) => ref ? ReactDOM.findDOMNode(ref) : null),
+  withReducer('projectBarNode', 'projectBarRefFn',
+      (state, ref) => ref ? ReactDOM.findDOMNode(ref) : null),
+  withReducer('propertiesBarNode', 'propertiesBarRefFn',
+      (state, ref) => ref ? ReactDOM.findDOMNode(ref) : null),
   withReducer('projectBarMeasures', 'newProjectBarMeasures',
     (state, measures) => (state && measures) ? state.merge(measures) : measures, null),
   withReducer('propertiesBarMeasures', 'newPropertiesBarMeasures',
@@ -60,11 +62,9 @@ export default compose(
     newProjectBarMeasures, newPropertiesBarMeasures, newSandboxMeasures, onMeasure,
     project_bar_x, project_bar_y, project_bar_width, project_bar_height,
     properties_bar_x, properties_bar_y, properties_bar_width, properties_bar_height,
-    sandbox_x, sandbox_y, sandbox_width, sandbox_height,
-    projectBarNode, propertiesBarNode, projectBarRefFn, propertiesBarRefFn,
-    setAdditionalWidth, additionalWidth, style
-  }) => {
-  return (
+    sandbox_x, sandbox_y, sandbox_width, sandbox_height, projectBarNode, propertiesBarNode,
+    projectBarRefFn, propertiesBarRefFn, setAdditionalWidth, additionalWidth, style
+  }) => (
     <Block ref={refFn} style={style || {}}>
       <Toolbar
         component={ProjectBar}
@@ -103,6 +103,5 @@ export default compose(
           width: sandbox_width
         }}
       />
-    </div>
-  );
-});
+    </Block>
+  ));
